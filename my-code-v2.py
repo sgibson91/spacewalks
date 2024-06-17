@@ -1,10 +1,14 @@
+import csv
+import json
+import datetime as dt
+import matplotlib.pyplot as myplot
+
 #https://data.nasa.gov/resource/eva.json
 
 data_f = open('/home/sarah/Projects/ssi-ukrn-fair-course/eva-data.json', 'r')
 fieldnames = ("EVA #", "Country", "Crew    ", "Vehicle", "Date", "Duration", "Purpose")
 
 data=[]
-import json
 
 data_t = open('/home/sarah/Projects/ssi-ukrn-fair-course/data.csv', 'w')
 dt = []
@@ -15,11 +19,7 @@ for i in range(374):
     data.append(json.loads(line[1:-1]))
 #data.pop(0)
 ## Comment out this bit if you don't want the spreadsheet
-import csv
-
 w=csv.writer(data_t)
-
-import datetime as dt
 
 time = []
 date =[]
@@ -54,8 +54,6 @@ for i in time:
     t.append(t[-1]+i)
 
 date,time = zip(*sorted(zip(date, time)))
-
-import matplotlib.pyplot as myplot
 
 myplot.plot(date,t[1:],'-')
 myplot.plot(date,t[1:],'ko')
